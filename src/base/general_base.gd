@@ -1,9 +1,8 @@
 @tool
+#! namespace Dialogs.Base class General
 extends Dialogs.Base.Handler
 
 const Margin = preload("uid://drvok6pf7vnu6") #! resolve UtilR.Nodes.Margin
-
-const SUCCESS_STRING = &"SUCCESS_STRING"
 
 enum TargetSection{
 	ROOT,
