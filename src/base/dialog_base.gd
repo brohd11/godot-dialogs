@@ -18,10 +18,8 @@ func _set_root_node(_root_node):
 			_root_node = Engine.get_main_loop().root
 	root_node = _root_node
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		if is_instance_valid(dialog):
-			dialog.queue_free()
+func get_response() -> Response:
+	return await handled
 
 
 func _emit_handled(payload:Variant) -> void:
@@ -53,3 +51,8 @@ func _is_handled():
 func _free_dialog():
 	if is_instance_valid(dialog):
 		dialog.queue_free()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		if is_instance_valid(dialog):
+			dialog.queue_free()

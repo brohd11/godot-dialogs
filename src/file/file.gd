@@ -31,6 +31,37 @@ static func save(settings:Settings=null):
 	settings.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	return FileBase.new(settings)
 
+class Editor:
+	static func file(settings:Settings=null):
+		settings = Settings.validate_ins(settings)
+		settings.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+		settings.editor_dialog = true
+		return FileBase.new(settings)
+
+	static func files(settings:Settings=null):
+		settings = Settings.validate_ins(settings)
+		settings.file_mode = FileDialog.FILE_MODE_OPEN_FILES
+		settings.editor_dialog = true
+		return FileBase.new(settings)
+
+	static func dir(settings:Settings=null):
+		settings = Settings.validate_ins(settings)
+		settings.file_mode = FileDialog.FILE_MODE_OPEN_DIR
+		settings.editor_dialog = true
+		return FileBase.new(settings)
+
+	static func any(settings:Settings=null):
+		settings = Settings.validate_ins(settings)
+		settings.file_mode = FileDialog.FILE_MODE_OPEN_ANY
+		settings.editor_dialog = true
+		return FileBase.new(settings)
+
+	static func save(settings:Settings=null):
+		settings = Settings.validate_ins(settings)
+		settings.file_mode = FileDialog.FILE_MODE_SAVE_FILE
+		settings.editor_dialog = true
+		return FileBase.new(settings)
+
 
 class Settings:
 	var root_node = null
