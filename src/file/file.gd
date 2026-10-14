@@ -32,34 +32,44 @@ static func save(settings:Settings=null):
 	return FileBase.new(settings)
 
 class Editor:
-	static func file(settings:Settings=null):
+	static func file(dialog_parent=null, settings:Settings=null):
 		settings = Settings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 		settings.editor_dialog = true
+		if is_instance_valid(dialog_parent):
+			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func files(settings:Settings=null):
+	static func files(dialog_parent=null, settings:Settings=null):
 		settings = Settings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_FILES
 		settings.editor_dialog = true
+		if is_instance_valid(dialog_parent):
+			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func dir(settings:Settings=null):
+	static func dir(dialog_parent=null, settings:Settings=null):
 		settings = Settings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_DIR
 		settings.editor_dialog = true
+		if is_instance_valid(dialog_parent):
+			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func any(settings:Settings=null):
+	static func any(dialog_parent=null, settings:Settings=null):
 		settings = Settings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_ANY
 		settings.editor_dialog = true
+		if is_instance_valid(dialog_parent):
+			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func save(settings:Settings=null):
+	static func save(dialog_parent=null, settings:Settings=null):
 		settings = Settings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 		settings.editor_dialog = true
+		if is_instance_valid(dialog_parent):
+			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
 
@@ -82,6 +92,7 @@ class Settings:
 		file_mode = _file_mode
 		editor_dialog = _editor_dialog
 	
+	#! keys root_node:Node
 	#! keys editor_dialog:bool current_path:String access_mode:int file_mode:int do_display:bool
 	static func create(params:={}):
 		var ins = new()
