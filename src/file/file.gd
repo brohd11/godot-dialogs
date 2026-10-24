@@ -1,79 +1,79 @@
 #! namespace Dialogs.Handlers class FilePicker
 
-#! keys i-Settings.create;
+#! keys i-FileSettings.create;
 static func with_params(params:Dictionary={}):
-	var settings = Settings.create(params)
+	var settings = FileSettings.create(params)
 	return FileBase.new(settings)
 
 
-static func file(settings:Settings=null):
-	settings = Settings.validate_ins(settings)
+static func file(settings:FileSettings=null):
+	settings = FileSettings.validate_ins(settings)
 	settings.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	return FileBase.new(settings)
 
-static func files(settings:Settings=null):
-	settings = Settings.validate_ins(settings)
+static func files(settings:FileSettings=null):
+	settings = FileSettings.validate_ins(settings)
 	settings.file_mode = FileDialog.FILE_MODE_OPEN_FILES
 	return FileBase.new(settings)
 
-static func dir(settings:Settings=null):
-	settings = Settings.validate_ins(settings)
+static func dir(settings:FileSettings=null):
+	settings = FileSettings.validate_ins(settings)
 	settings.file_mode = FileDialog.FILE_MODE_OPEN_DIR
 	return FileBase.new(settings)
 
-static func any(settings:Settings=null):
-	settings = Settings.validate_ins(settings)
+static func any(settings:FileSettings=null):
+	settings = FileSettings.validate_ins(settings)
 	settings.file_mode = FileDialog.FILE_MODE_OPEN_ANY
 	return FileBase.new(settings)
 
-static func save(settings:Settings=null):
-	settings = Settings.validate_ins(settings)
+static func save(settings:FileSettings=null):
+	settings = FileSettings.validate_ins(settings)
 	settings.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	return FileBase.new(settings)
 
 class Editor:
-	static func file(dialog_parent=null, settings:Settings=null):
-		settings = Settings.validate_ins(settings)
+	static func file(dialog_parent=null, settings:FileSettings=null):
+		settings = FileSettings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 		settings.editor_dialog = true
 		if is_instance_valid(dialog_parent):
 			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func files(dialog_parent=null, settings:Settings=null):
-		settings = Settings.validate_ins(settings)
+	static func files(dialog_parent=null, settings:FileSettings=null):
+		settings = FileSettings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_FILES
 		settings.editor_dialog = true
 		if is_instance_valid(dialog_parent):
 			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func dir(dialog_parent=null, settings:Settings=null):
-		settings = Settings.validate_ins(settings)
+	static func dir(dialog_parent=null, settings:FileSettings=null):
+		settings = FileSettings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_DIR
 		settings.editor_dialog = true
 		if is_instance_valid(dialog_parent):
 			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func any(dialog_parent=null, settings:Settings=null):
-		settings = Settings.validate_ins(settings)
+	static func any(dialog_parent=null, settings:FileSettings=null):
+		settings = FileSettings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_OPEN_ANY
 		settings.editor_dialog = true
 		if is_instance_valid(dialog_parent):
 			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-	static func save(dialog_parent=null, settings:Settings=null):
-		settings = Settings.validate_ins(settings)
+	static func save(dialog_parent=null, settings:FileSettings=null):
+		settings = FileSettings.validate_ins(settings)
 		settings.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 		settings.editor_dialog = true
 		if is_instance_valid(dialog_parent):
 			settings.root_node = dialog_parent
 		return FileBase.new(settings)
 
-
-class Settings:
+const Settings = FileSettings
+class FileSettings:
 	var root_node = null
 	var editor_dialog:= false
 	var current_path:String = ""
@@ -104,9 +104,9 @@ class Settings:
 
 class FileBase extends Dialogs.Base.Handler:
 	
-	var settings:Settings
+	var settings:FileSettings
 	
-	func _init(_settings:Settings) -> void:
+	func _init(_settings:FileSettings) -> void:
 		settings = _settings
 		_set_root_node(settings.root_node)
 		if settings.do_display:

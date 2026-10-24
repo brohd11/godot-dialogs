@@ -91,8 +91,9 @@ class DialogStructure extends Window:
 		var bg = PanelContainer.new()
 		marg.add_child(bg)
 		bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		if Engine.has_singleton(&"EditorInterface"):
-			var editor_interface = Engine.get_singleton("EditorInterface")
+		
+		var editor_interface = UEngine.get_editor_interface()
+		if is_instance_valid(editor_interface):
 			scale = editor_interface.get_editor_scale()
 			var bg_sb = bg.get_theme_stylebox("panel").duplicate()
 			bg_sb.set_corner_radius_all(0)

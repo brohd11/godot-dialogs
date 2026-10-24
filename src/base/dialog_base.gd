@@ -1,6 +1,8 @@
 #! namespace Dialogs.Base class Handler
 extends RefCounted
 
+const UEngine = preload("uid://d3ly5y4q2tx57") #! resolve UtilR.UEngine
+
 const Response = Dialogs.Response
 
 var root_node:Node
@@ -11,9 +13,9 @@ signal handled(response:Response)
 
 func _set_root_node(_root_node):
 	if _root_node == null:
-		if Engine.is_editor_hint():
-			var ed_int = Engine.get_singleton(&"EditorInterface")
-			_root_node = ed_int.get_base_control()
+		var editor_interface = UEngine.get_editor_interface()
+		if is_instance_valid(editor_interface):
+			_root_node = editor_interface.get_base_control()
 		else:
 			_root_node = Engine.get_main_loop().root
 	root_node = _root_node
