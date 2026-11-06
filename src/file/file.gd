@@ -95,7 +95,10 @@ class FileSettings:
 	#! keys root_node:Node
 	#! keys editor_dialog:bool current_path:String access_mode:int file_mode:int do_display:bool
 	static func create(params:={}):
-		return Sugar.set_params(new(), params)
+		var settings = new()
+		for key in params:
+			settings.set(key, params[key])
+		return settings
 	
 	static func validate_ins(settings):
 		if settings == null:
